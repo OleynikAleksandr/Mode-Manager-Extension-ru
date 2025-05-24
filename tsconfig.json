@@ -1,0 +1,29 @@
+{
+    "compilerOptions": {
+        "module": "commonjs",
+        "target": "ES2020", // Обновлено для поддержки более современных возможностей JS
+        "outDir": "out",
+        "lib": [
+            "ES2020",
+            "DOM",
+            "DOM.Iterable"
+        ],
+        "jsx": "react-jsx",
+        "sourceMap": true,
+        "rootDir": "src",
+        "strict": true, /* Включить все строгие проверки типов */
+        "esModuleInterop": true, /* Позволяет импортировать модули CommonJS как ES6 модули */
+        "skipLibCheck": true, /* Пропускать проверку типов для всех файлов деклараций (*.d.ts) */
+        "forceConsistentCasingInFileNames": true, /* Обеспечивает согласованность регистра имен файлов */
+        "resolveJsonModule": true /* Позволяет импортировать JSON файлы */
+    },
+    "include": [
+        "src/**/*.ts",
+        "src/**/*.tsx"
+    ],
+    "exclude": [
+        "node_modules",
+        ".vscode-test",
+        "vite.config.ts"
+    ]
+}

@@ -1,0 +1,281 @@
+/* Глобальные переменные VS Code для тем */
+:root {
+    --vscode-editor-background: #1e1e1e;
+    /* Пример для темной темы, будет заменено VS Code */
+    --vscode-editor-foreground: #d4d4d4;
+    --vscode-settings-headerBorder: #3c3c3c;
+    --vscode-descriptionForeground: #a0a0a0;
+    --vscode-badge-background: #4d4d4d;
+    --vscode-badge-foreground: #ffffff;
+    --vscode-focusBorder: #007fd4;
+    --vscode-input-border: #3c3c3c;
+    --vscode-input-background: #3c3c3c;
+    --vscode-input-foreground: #cccccc;
+    --vscode-list-hoverBackground: #2a2d2e;
+    --vscode-list-activeSelectionBackground: #094771;
+    --vscode-list-activeSelectionForeground: #ffffff;
+    --vscode-button-background: #0e639c;
+    --vscode-button-foreground: #ffffff;
+    --vscode-button-hoverBackground: #1177bb;
+    --vscode-button-secondaryBackground: #3a3d41;
+    --vscode-button-secondaryForeground: #cccccc;
+    --vscode-scrollbarSlider-background: #66666680;
+    --vscode-scrollbarSlider-hoverBackground: #777777a0;
+    --vscode-scrollbarSlider-activeBackground: #888888c0;
+    /* Добавлено для активного состояния */
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    margin: 0;
+    background-color: var(--vscode-editor-background);
+    color: var(--vscode-editor-foreground);
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+#root {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 20px;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+header {
+    border-bottom: 1px solid var(--vscode-settings-headerBorder);
+    padding-bottom: 10px;
+}
+
+header h1 {
+    margin-top: 0;
+    margin-bottom: 5px;
+    font-size: 1.25em;
+}
+
+.language-switcher {
+    /* margin-top: 8px; */
+    /* Убрано, т.к. теперь в футере */
+    /* margin-bottom: 5px; */
+    /* Убрано */
+    display: flex;
+    /* Для выравнивания label и кнопок */
+    align-items: center;
+    gap: 5px;
+    /* Расстояние между label и первой кнопкой */
+}
+
+.lang-button,
+button {
+    /* Общие стили для кнопок */
+    padding: 8px 15px;
+    font-size: 0.9em;
+    margin-left: 5px;
+    border: 1px solid var(--vscode-button-border, var(--vscode-contrastBorder, transparent));
+    background-color: var(--vscode-button-secondaryBackground, var(--vscode-input-background));
+    color: var(--vscode-button-secondaryForeground, var(--vscode-input-foreground));
+    cursor: pointer;
+    border-radius: 3px;
+    transition: background-color 0.2s ease;
+}
+
+.lang-button:first-child,
+button:first-child {
+    margin-left: 0;
+}
+
+.lang-button:hover,
+button:hover:not(:disabled) {
+    background-color: var(--vscode-button-secondaryHoverBackground, var(--vscode-list-hoverBackground));
+}
+
+.lang-button.active,
+button#apply-button:not(:disabled) {
+    /* Специфичность для кнопки Apply */
+    background-color: var(--vscode-button-background, var(--vscode-list-activeSelectionBackground));
+    color: var(--vscode-button-foreground, var(--vscode-list-activeSelectionForeground));
+    border-color: var(--vscode-focusBorder, var(--vscode-button-background));
+}
+
+button:disabled {
+    background-color: var(--vscode-button-secondaryBackground);
+    color: var(--vscode-button-secondaryForeground);
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+
+.selection-summary {
+    font-size: 0.9em;
+    color: var(--vscode-descriptionForeground);
+    margin-top: 5px;
+    display: flex;
+    flex-direction: column;
+    /* Чтобы плашки были под текстом "Selected: X modes." */
+    gap: 4px;
+}
+
+#selected-names-chips {
+    /* Контейнер для плашек */
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    /* Расстояние между плашками */
+    margin-top: 5px;
+    /* Отступ от текста "Selected: X modes." */
+}
+
+.selected-mode-chip {
+    display: inline-flex;
+    /* Используем flex для выравнивания иконки и текста, если иконка будет */
+    align-items: center;
+    padding: 3px 7px;
+    border-radius: 12px;
+    /* Более скругленные края для плашек */
+    background-color: var(--vscode-badge-background);
+    color: var(--vscode-badge-foreground);
+    font-size: 0.85em;
+    line-height: 1.4;
+    cursor: grab;
+    /* Для dnd-kit */
+    border: 1px solid transparent;
+    /* Для ховер эффекта */
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.selected-mode-chip:hover {
+    border-color: var(--vscode-focusBorder);
+}
+
+
+main {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    overflow-y: hidden;
+    min-height: 0;
+}
+
+.modes-list {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+    overflow-y: auto;
+    flex-grow: 1;
+    padding-right: 5px;
+    /* Для полосы прокрутки */
+}
+
+/* Стили для полосы прокрутки (Webkit) */
+.modes-list::-webkit-scrollbar {
+    width: 16px;
+}
+
+.modes-list::-webkit-scrollbar-track {
+    background: var(--vscode-editor-background);
+}
+
+.modes-list::-webkit-scrollbar-thumb {
+    background-color: var(--vscode-scrollbarSlider-background);
+    border-radius: 8px;
+    border: 4px solid var(--vscode-editor-background);
+}
+
+.modes-list::-webkit-scrollbar-thumb:hover {
+    background-color: var(--vscode-scrollbarSlider-hoverBackground);
+}
+
+.modes-list::-webkit-scrollbar-button {
+    background-color: var(--vscode-scrollbarSlider-background);
+    height: 16px;
+    width: 16px;
+}
+
+.mode-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 12px;
+    border: 1px solid var(--vscode-input-border, #ccc);
+    border-radius: 4px;
+    background-color: var(--vscode-input-background, #fff);
+    cursor: pointer;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.mode-item:hover {
+    background-color: var(--vscode-list-hoverBackground);
+    border-color: var(--vscode-focusBorder);
+}
+
+.mode-item.selected {
+    background-color: var(--vscode-list-activeSelectionBackground);
+    color: var(--vscode-list-activeSelectionForeground);
+    border-color: var(--vscode-focusBorder);
+}
+
+.mode-item input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    accent-color: var(--vscode-button-background);
+    /* Цвет активного чекбокса */
+    flex-shrink: 0;
+    margin-right: 8px;
+}
+
+.mode-content {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    gap: 2px;
+    /* Небольшой отступ между именем и описанием */
+}
+
+.mode-name-display {
+    font-weight: 500;
+    /* Немного менее жирный, чем bold */
+}
+
+.mode-item.selected .mode-name-display {
+    color: var(--vscode-list-activeSelectionForeground);
+}
+
+.mode-description-display {
+    font-size: 0.85em;
+    color: var(--vscode-descriptionForeground);
+    white-space: normal;
+}
+
+.mode-item.selected .mode-description-display {
+    color: var(--vscode-list-activeSelectionForeground, #c5c5c5);
+    /* Фоллбэк для лучшей читаемости на темном фоне */
+}
+
+footer {
+    display: flex;
+    justify-content: space-between;
+    /* Разносим группы кнопок */
+    align-items: center;
+    /* Выравниваем по вертикали */
+    gap: 10px;
+    padding-top: 10px;
+    /* Немного уменьшил для компактности */
+    padding-bottom: 10px;
+    /* Добавил отступ снизу */
+    border-top: 1px solid var(--vscode-settings-headerBorder);
+    flex-shrink: 0;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 10px;
+    /* Расстояние между Apply и Cancel */
+}

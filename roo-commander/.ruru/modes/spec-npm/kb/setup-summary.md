@@ -1,0 +1,3 @@
+1.  **Initialize Project:** Navigate to your project directory and run `npm init`. This command interactively prompts for package details (name, version, etc.) or accepts defaults with `npm init -y` to generate the essential `package.json` file.
+2.  **Install Dependencies:** Use `npm install <package-name>` to install required packages. This adds them to the `dependencies` section in `package.json` and installs them into the `node_modules` folder. Use `npm install <package-name> --save-dev` (or `-D`) for development-only tools.
+3.  **Install Project Dependencies:** If cloning an existing project with a `package.json`, run `npm install` in the project root to install all dependencies listed in `package.json` and `package-lock.json`.

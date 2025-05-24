@@ -1,0 +1,28 @@
+# Исходный код (уже скомпилирован в папку out/)
+src/
+
+# Большие/ненужные папки специфичные для проекта
+
+# Файлы Git
+.git/
+.gitignore
+.gitattributes
+
+# Настройки редактора VS Code
+.vscode/
+
+# Файлы, генерируемые ОС
+.DS_Store
+Thumbs.db
+
+# Упакованные файлы расширения
+*.vsix
+
+# Лог-файлы
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Кэш ESLint
+.eslintcache

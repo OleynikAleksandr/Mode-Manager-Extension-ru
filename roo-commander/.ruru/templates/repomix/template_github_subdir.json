@@ -1,0 +1,36 @@
+{
+  "sources": [
+    {
+      "path": "<SOURCE_PATH>",
+      "outputDir": "<OUTPUT_DIR>",
+      "ignore": [
+        ".git/**",
+        "node_modules/**",
+        "dist/**",
+        "build/**",
+        "*.log",
+        "*.lock",
+        ".DS_Store",
+        ".env",
+        ".env.*",
+        "*.pyc",
+        "__pycache__/**",
+        ".pytest_cache/**",
+        ".mypy_cache/**",
+        ".venv/**",
+        "venv/**",
+        "target/**"
+      ],
+      "include": [
+        "<SUBFOLDER_PATH>/**"
+      ],
+      "outputStyles": [
+        "xml",
+        "markdown"
+      ]
+    }
+  ],
+  "globalIgnore": [],
+  "globalInclude": [],
+  "maxFileSizeBytes": 1048576
+}

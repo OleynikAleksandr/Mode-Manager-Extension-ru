@@ -1,0 +1,38 @@
+// Шаблон для создания новой команды Mode-Manager
+
+import { IManagedCommand } from '../../core/interfaces'; // Путь может потребовать корректировки
+
+/**
+ * Описание вашей команды.
+ * Замените MyNewCommand на имя вашего класса команды.
+ */
+export class MyNewCommand implements IManagedCommand {
+  public readonly id = 'my.new.command.id'; // Уникальный ID команды
+  public readonly name = 'Моя новая команда'; // Отображаемое имя
+  public readonly description = 'Краткое описание того, что делает эта команда.';
+
+  /**
+   * Метод выполнения команды.
+   * @param args - Аргументы, переданные команде.
+   * @returns Promise, который разрешается, когда команда выполнена.
+   */
+  public async execute(...args: any[]): Promise<any> {
+    console.log(`Команда "${this.name}" (ID: ${this.id}) вызвана с аргументами:`, args);
+
+    // TODO: Реализуйте здесь логику вашей команды.
+    // Например:
+    // - Взаимодействие с VS Code API (окна, редактор, терминал).
+    // - Вызов методов ModeManager.
+    // - Работа с файловой системой.
+    // - Отправка запросов к API.
+
+    // Пример возвращаемого значения (может быть void или что-то полезное)
+    return { success: true, message: 'Команда успешно выполнена (заглушка)' };
+  }
+}
+
+// Для регистрации команды в вашем расширении, вам нужно будет:
+// 1. Импортировать этот класс в соответствующем месте (например, в `src/commands/index.ts` или `src/extension.ts`).
+// 2. Создать экземпляр команды.
+// 3. Зарегистрировать его с помощью VS Code API `vscode.commands.registerCommand(command.id, () => command.execute());`
+//    или через вашу собственную систему управления командами, если она есть.
