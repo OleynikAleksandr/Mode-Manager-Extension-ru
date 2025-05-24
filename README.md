@@ -12,7 +12,7 @@ Mode-Manager allows Roo Code users to easily switch between different working mo
 
 ## Installation
 
-1.  Download the latest version of the extension in `.vsix` format from the releases page (link will be added later).
+1.  Download the latest version of the extension in `.vsix` format from the [releases page](https://github.com/OleynikAleksandr/Mode-Manager-Extension-ru/releases/tag/v0.3.5-ru).
 2.  Open VS Code.
 3.  Go to the Extensions view (Ctrl+Shift+X).
 4.  Click the three dots (...) in the upper right corner of the Extensions view.
